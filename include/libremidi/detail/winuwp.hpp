@@ -322,6 +322,7 @@ public:
       port_ = get(MidiInPort::FromIdAsync(id));
       if (port_)
       {
+        connected_ = true;
         port_.MessageReceived([=](auto&, auto args) {
           const auto& msg = args.Message();
 
@@ -344,6 +345,7 @@ public:
       {
         port_.Close();
       }
+      connected_ = false;
     }
   }
 
@@ -401,6 +403,7 @@ public:
     if (!id.empty())
     {
       port_ = get(MidiOutPort::FromIdAsync(id));
+      connected_ = port_ ? true : false;
     }
   }
 
@@ -412,6 +415,7 @@ public:
       {
         port_.Close();
       }
+      connected_ = false;
     }
   }
 
