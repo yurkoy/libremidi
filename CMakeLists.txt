@@ -31,6 +31,7 @@ target_compile_features(RtMidi17 ${_public} cxx_std_17)
 
 find_package(Threads)
 target_link_libraries(RtMidi17 ${_public} ${CMAKE_THREAD_LIBS_INIT})
+target_include_directories(RtMidi17 ${_public} $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
 
 if(APPLE)
   ## CoreMIDI support ##
